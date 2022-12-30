@@ -352,68 +352,68 @@ async function app() {
     };
  
 
-    // var webcamElement = document.querySelector("#webcam");
-    // const webcam = await tf.data.webcam(webcamElement);
+    var webcamElement = document.querySelector("#webcam");
+    const webcam = await tf.data.webcam(webcamElement);
 
-    // const handPosemodel = handPoseDetection.SupportedModels.MediaPipeHands;
-    // const faceModel = faceDetection.SupportedModels.MediaPipeFaceDetector;
-    // // const modelSegmenter = bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation;
+    const handPosemodel = handPoseDetection.SupportedModels.MediaPipeHands;
+    const faceModel = faceDetection.SupportedModels.MediaPipeFaceDetector;
+    // const modelSegmenter = bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation;
 
-    // // const segmenterConfig = {
-    // //     runtime: 'mediapipe',
-    // //     solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation'
-    // //   };
-    // const detectorConfig = {
-    //     maxHands : 1,
-    //     runtime: 'tfjs',
-    //     minDetectionConfidence : 0.8,
-    //   };
-    
-    // const faceDetectorConfig = {
+    // const segmenterConfig = {
     //     runtime: 'mediapipe',
-    //     solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/face_detection',
+    //     solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation'
     //   };
+    const detectorConfig = {
+        maxHands : 1,
+        runtime: 'tfjs',
+        minDetectionConfidence : 0.8,
+      };
+    
+    const faceDetectorConfig = {
+        runtime: 'mediapipe',
+        solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/face_detection',
+      };
 
-    // const detector = await handPoseDetection.createDetector(handPosemodel, detectorConfig);
-    // const faceDetector = await faceDetection.createDetector(faceModel, faceDetectorConfig);
+    const detector = await handPoseDetection.createDetector(handPosemodel, detectorConfig);
+    const faceDetector = await faceDetection.createDetector(faceModel, faceDetectorConfig);
 
-    // // const segmenter = await bodySegmentation.createSegmenter(modelSegmenter, segmenterConfig);
+    // const segmenter = await bodySegmentation.createSegmenter(modelSegmenter, segmenterConfig);
 
  
-    // while(true){
-    //     const img = await webcam.capture();
-    //     const estimationConfig = {flipHorizontal: true};
-    //     const faceEstimationConfig = {flipHorizontal: false};
-    //     const faces = await faceDetector.estimateFaces(img, faceEstimationConfig);
-    //     // const segmentationConfig = {flipHorizontal: false};
-    //     // const people = await segmenter.segmentPeople(img, segmentationConfig);
+    while(true){
+        const img = await webcam.capture();
+        const estimationConfig = {flipHorizontal: true};
+        const faceEstimationConfig = {flipHorizontal: false};
+        const faces = await faceDetector.estimateFaces(img, faceEstimationConfig);
+        // const segmentationConfig = {flipHorizontal: false};
+        // const people = await segmenter.segmentPeople(img, segmentationConfig);
         
 
-    //     if(faces.length > 0){
-    //         const hands = await detector.estimateHands(img,estimationConfig);
-    //     // Modificamos para solo entrar en el loop en función de una confianza superior a 97%
-    //         if(hands.length > 0 && hands[0]['score'] >= 0.97){
-    //             recogniceGesture(hands[0]['keypoints3D'], hands[0]['handedness']);
+        if(faces.length > 0){
+            const hands = await detector.estimateHands(img,estimationConfig);
+        // Modificamos para solo entrar en el loop en función de una confianza superior a 97%
+            if(hands.length > 0 && hands[0]['score'] >= 0.97){
+                recogniceGesture(hands[0]['keypoints3D'], hands[0]['handedness']);
                 
-    //             if(timesDetectedLastGesture > 10){
-    //                 timesDetectedLastGesture = 0;
-    //                 document.getElementById(lastGestureDetected + "Btn").style.backgroundColor = '#edbaad';
-    //                 if(lastGestureDetected == posibleGestures[0]){currentEnabledButton.click();}
-    //                 else if (lastGestureDetected == posibleGestures[1] & middleFingerButton!= null){middleFingerButton.click();}
-    //                 else if (lastGestureDetected == posibleGestures[2] & ringFingerButton != null){ringFingerButton.click();}
-    //                 else if (lastGestureDetected == posibleGestures[3] & pinkyFingerButton != null){pinkyFingerButton.click();}
-    //                 await sleep(1000);
-    //                 document.getElementById(lastGestureDetected + "Btn").style.backgroundColor = '#EFEFEF';
+                if(timesDetectedLastGesture > 10){
+                    timesDetectedLastGesture = 0;
+                    document.getElementById(lastGestureDetected + "Btn").style.backgroundColor = '#edbaad';
+                    if(lastGestureDetected == posibleGestures[0]){currentEnabledButton.click();}
+                    else if (lastGestureDetected == posibleGestures[1] & middleFingerButton!= null){middleFingerButton.click();}
+                    else if (lastGestureDetected == posibleGestures[2] & ringFingerButton != null){ringFingerButton.click();}
+                    else if (lastGestureDetected == posibleGestures[3] & pinkyFingerButton != null){pinkyFingerButton.click();}
+                    await sleep(1000);
+                    document.getElementById(lastGestureDetected + "Btn").style.backgroundColor = '#EFEFEF';
                     
                     
                 
-    //             }
-    //         }
-    //     }
+                }
+            }
+        }
         
-    //     img.dispose();
-    //     await tf.nextFrame();
-    // }
+        img.dispose();
+        await tf.nextFrame();
+    }
 
 }
 
