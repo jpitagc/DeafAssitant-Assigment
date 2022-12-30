@@ -1,0 +1,26 @@
+[
+	{
+		"fileName": "microwave_1672429237282.wav",
+		"className": "microwave",
+		"classNumber": 0,
+		"fold": "1"
+	},
+	{
+		"fileName": "hood_1672429171955.wav",
+		"className": "hood",
+		"classNumber": 1,
+		"fold": "1"
+	},
+	{
+		"fileName": "fridge_1672429113198.wav",
+		"className": "fridge",
+		"classNumber": 2,
+		"fold": "1"
+	},
+	{
+		"fileName": "noise_1672429031882.wav",
+		"className": "noise",
+		"classNumber": 3,
+		"fold": "1"
+	}
+]

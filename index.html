@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <title>DeafAssitant WebPage</title>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="#">
+  <meta charset="UTF-8">
+</head>
+
+<body id="blink">
+  <section>
+    <div style = "display: flex; justify-content: center; align-items: center;">
+      
+      <video 
+        playsinline
+        muted
+        id="webcam"
+        width="360"
+        height="360"
+        class="videoFlip"
+      ></video>
+      
+    </div>
+  <section>
+   
+    <div class = "center">
+      <div style="display: block;">
+        <div class = "small" id="Thumb_IndexBtn">Index Finger</div>
+        <span class="dot index" id="Thumb_IndexBtn_dot"></span>
+      </div>
+      <div style="display: block;">
+        <div class = "small" id="Thumb_MiddleBtn">Middle Finger</div>
+        <span class="dot middle" id="Thumb_MiddleBtn_dot"></span>
+      </div>
+      <div style="display: block;">
+        <div class = "small" id="Thumb_RingBtn">Ring Finger</div>
+        <span class="dot ring" id="Thumb_RingBtn_dot"></span>
+      </div>
+      <div style="display: block;">
+        <div class = "small" id="Thumb_PinkyBtn">Pinky Finger</div>
+        <span class="dot pinky" id="Thumb_PinkyBtn_dot"></span>
+      </div>
+      
+      
+
+    </div>
+  </section>
+  <section>
+
+    <div class="row">
+      <div class="column">
+   
+        <div class = "full" style="width:50%;"> 
+          <button class="button" id="defineClasesForPrediction">Create Custom</button>
+          <button id="loadModelBtn">Load Model</button>
+          
+        </div>
+        <div class = "full declareClasses" style="width:120%;" id = "declareClassesDiv">
+          <ol id='classList' ></ol>
+          <input type='text' id='class' />
+          <button id='adder'> Add class to list</button>
+          <p class = "info" id="infoClasses">* create 3 classes</p>
+          <button id='recorder'> Start recording audios</button>
+          
+        </div>
+        <div class = "full recordClasses" id = "recordClassesDiv">
+          <div>
+            <button id="recFirstClass">Record 1st sound</button>
+            <p class = "recordedNum" id = "recFirstClassNum">0/xxnumberxx</p>
+          </div>
+          <div>
+            <button id="recSecondClass">Record 2nd sound</button>
+            <p class = "recordedNum" id = "recSecondClassNum">0/xxnumberxx</p>
+          </div>
+          <div>
+            <button id="recThirdClass">Record 3rd sound</button>
+            <p class = "recordedNum" id = "recThirdClassNum">0/xxnumberxx</p>
+          </div>
+          <div>
+            <button id="recNoiseClass">Record bckg. noise</button>
+            <p class = "recordedNum" id = "recNoiseClassNum">0/xxnumberxx</p>
+          </div>
+          <p class = "info" id="infoAudios">* record at least xxnumberxx audios of each class</p>
+        </div>
+        
+      </div>
+      <div class="column">
+        <div class = "full">
+          <button id="createAndTrainBtn">Create and Train</button>
+          <p class = "info" id="infoTraning">* move audios to folder before training</p>
+        </div>
+        <div class = "full">
+          <button id="testModelBtn">Test Model</button>
+          <div></div>
+          <button id="micStartBtn">Start Mic.</button>
+          <button id="micStopBtn">Stop Mic.</button>
+        </div>
+    
+       
+    
+        <div class = "full">
+          <audio id="audioPlayer" controls="controls" src=""></audio>
+          <div style="display:none;" id="iconContainer">
+            <img src="" alt="Classification" id="iconRecognized" class="icon">
+            <p class="iconName" id="iconName">??</p></div>
+        </div>
+      </div>
+    </div>
+
+   
+   
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-segmentation"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-detection"></script>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
